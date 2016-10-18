@@ -16,11 +16,17 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
+    <TextView
+        android:id="@+id/root_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/console_output" />
+
     <Button
         android:id="@+id/ls_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/console_output"
+        android:layout_below="@+id/root_output"
         android:text="ls" />
 
 </RelativeLayout>
