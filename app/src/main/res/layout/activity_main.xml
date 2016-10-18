@@ -11,15 +11,16 @@
     tools:context="com.example.seongmin.terminal.MainActivity">
 
     <TextView
-        android:id="@+id/console_text"
+        android:id="@+id/console_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
     <Button
+        android:id="@+id/ls_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/console_text"
+        android:layout_below="@+id/console_output"
         android:text="ls" />
 
 </RelativeLayout>
