@@ -1,5 +1,7 @@
 package com.example.seongmin.terminal;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 import eu.chainfire.libsuperuser.Shell;
 
 public class MainActivity extends AppCompatActivity {
+    private boolean root_access;
+
     private TextView console_output;
     private TextView root_output;
     private Button ls_button;
@@ -31,16 +35,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        display_root_status();
+        (new Startup()).setContext(this).execute();
     }
 
-    private void display_root_status() {
-        String rootStatus;
-        if (Shell.SU.available()) {
-            rootStatus = "Root available.";
-        } else {
-            rootStatus = "Root unavailable.";
+    private class Startup extends AsyncTask<Void, Void, Void> {
+        private Context context;
+
+        public Startup setContext(Context context) {
+            this.context = context;
+            return this;
         }
-        root_output.setText(rootStatus);
+
+        @Override
+        public Void doInBackground(Void... params) {
+            check_root_status();
+            return null;
+        }
+
+        @Override
+        public void onPostExecute(Void result) {
+            // Display root status.
+            if (root_output == null) return;
+
+            String root_status_text;
+            if (root_access) {
+                root_status_text = "Root available.";
+            } else {
+                root_status_text = "Root unavailable.";
+            }
+            root_output.setText(root_status_text);
+        }
+
+        private void check_root_status() {
+            root_access = Shell.SU.available();
+        }
+
     }
+
 }
