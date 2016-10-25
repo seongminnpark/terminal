@@ -14,13 +14,20 @@
         android:id="@+id/console_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/console_output" />
 
     <TextView
         android:id="@+id/root_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/console_output" />
+
+    <EditText
+        android:id="@+id/console_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/console_input_hint"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/ls_button"
