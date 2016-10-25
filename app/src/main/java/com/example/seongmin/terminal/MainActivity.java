@@ -6,15 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
 
 public class MainActivity extends AppCompatActivity {
     private boolean root_access;
+    private Shell.Interactive shell;
+    private boolean shell_active = false;
 
-    private TextView console_output;
     private TextView root_output;
+    private TextView console_output;
+    private EditText console_input;
     private Button ls_button;
 
     @Override
@@ -23,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize View components.
-        console_output = (TextView) findViewById(R.id.console_output);
         root_output = (TextView) findViewById(R.id.root_output);
+        console_output = (TextView) findViewById(R.id.console_output);
+        console_input = (EditText) findViewById(R.id.console_input);
         ls_button = (Button) findViewById(R.id.ls_button);
 
         // Set onclick listeners.
@@ -35,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Other setup.
+        console_input.setEnabled(shell_active);
+
         (new Startup()).setContext(this).execute();
+        init_shell();
     }
 
     private class Startup extends AsyncTask<Void, Void, Void> {
@@ -70,6 +82,37 @@ public class MainActivity extends AppCompatActivity {
             root_access = Shell.SU.available();
         }
 
+    }
+
+    private void init_shell() {
+        if (shell != null) return;
+        shell = new Shell.Builder().
+                useSU().
+                setWantSTDERR(true).
+                setWatchdogTimeout(5).
+                setMinimalLogging(true).
+                open(new Shell.OnCommandResultListener() {
+
+                    // Callback to report whether the shell was successfully started up
+                    @Override
+                    public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+
+                        if (exitCode != Shell.OnCommandResultListener.SHELL_RUNNING) {
+                            report_error("Error opening root shell: exitCode " + exitCode);
+                        } else {
+                            // Shell is up.
+                            shell_active = true;
+                            console_input.setEnabled(shell_active);
+                        }
+                    }
+                });
+    }
+
+    private void report_error(String error) {
+        List<String> errorInfo = new ArrayList<String>();
+        errorInfo.add(error);
+        shell = null;
+        shell_active = false;
     }
 
 }
