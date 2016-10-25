@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 console_output.setText("Clicked");
+                ls_clicked();
             }
         });
 
@@ -113,6 +114,30 @@ public class MainActivity extends AppCompatActivity {
         errorInfo.add(error);
         shell = null;
         shell_active = false;
+    }
+
+    private void updateResultStatus(List<String> suResult) {
+        StringBuilder sb = new StringBuilder();
+        if (suResult != null) {
+            for (String line : suResult) {
+                sb.append(line).append((char) 10);
+            }
+        }
+        console_output.setText(sb.toString());
+    }
+
+    private void ls_clicked() {
+        if (shell == null) return;
+        shell.addCommand(new String[] {"ls"}, 0,
+                new Shell.OnCommandResultListener() {
+                    public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                        if (exitCode < 0) {
+                            report_error("Error executing commands: exitCode " + exitCode);
+                        } else {
+                            updateResultStatus(output);
+                        }
+                    }
+                });
     }
 
 }
