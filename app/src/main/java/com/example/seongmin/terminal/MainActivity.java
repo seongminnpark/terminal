@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Shell.Interactive shell;
     private boolean shell_active = false;
 
+    private ScrollView console_scrollview;
     private TextView root_output;
     private TextView console_output;
     private EditText console_input;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize View components.
+        console_scrollview = (ScrollView) findViewById(R.id.console_scrollview);
         root_output = (TextView) findViewById(R.id.root_output);
         console_output = (TextView) findViewById(R.id.console_output);
         console_input = (EditText) findViewById(R.id.console_input);
@@ -124,11 +127,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         console_output.setText(sb.toString());
+        console_scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                console_scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
     private void ls_clicked() {
         if (shell == null) return;
-        shell.addCommand(new String[] {"ls"}, 0,
+        shell.addCommand(new String[]{"ls"}, 0,
                 new Shell.OnCommandResultListener() {
                     public void onCommandResult(int commandCode, int exitCode, List<String> output) {
                         if (exitCode < 0) {

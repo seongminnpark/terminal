@@ -10,31 +10,42 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.seongmin.terminal.MainActivity">
 
-    <TextView
-        android:id="@+id/console_output"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/console_output" />
-
-    <TextView
-        android:id="@+id/root_output"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/console_output" />
-
-    <EditText
-        android:id="@+id/console_input"
+    <ScrollView
+        android:id="@+id/console_scrollview"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/root_output"
-        android:hint="@string/console_input_hint"
-        android:inputType="text" />
+        android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/ls_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/console_input"
-        android:text="ls" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
+            <TextView
+                android:id="@+id/console_output"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/console_output" />
+
+            <TextView
+                android:id="@+id/root_output"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/console_output" />
+
+            <EditText
+                android:id="@+id/console_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/root_output"
+                android:hint="@string/console_input_hint"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/ls_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/console_input"
+                android:text="ls" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
