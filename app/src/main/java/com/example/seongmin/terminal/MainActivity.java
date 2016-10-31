@@ -136,7 +136,7 @@ public class MainActivity extends Activity {
 
     private void submit_clicked() {
         if (shell == null) return;
-        shell.addCommand(new String[]{"lsa"}, 0,
+        shell.addCommand(new String[]{console_input.getText().toString()}, 0,
                 new Shell.OnCommandResultListener() {
                     public void onCommandResult(int commandCode, int exitCode, List<String> output) {
                         if (exitCode < 0) {
