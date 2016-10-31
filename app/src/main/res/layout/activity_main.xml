@@ -40,11 +40,11 @@
                 android:inputType="text" />
 
             <Button
-                android:id="@+id/ls_button"
+                android:id="@+id/submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/console_input"
-                android:text="ls" />
+                android:text="@string/submit_button" />
 
         </RelativeLayout>
     </ScrollView>

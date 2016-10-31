@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView root_output;
     private TextView console_output;
     private EditText console_input;
-    private Button ls_button;
+    private Button submit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         root_output = (TextView) findViewById(R.id.root_output);
         console_output = (TextView) findViewById(R.id.console_output);
         console_input = (EditText) findViewById(R.id.console_input);
-        ls_button = (Button) findViewById(R.id.ls_button);
+        submit_button = (Button) findViewById(R.id.submit_button);
 
         // Set onclick listeners.
-        ls_button.setOnClickListener(new View.OnClickListener() {
+        submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 console_output.setText("Clicked");
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ls_clicked() {
         if (shell == null) return;
-        shell.addCommand(new String[]{"ls"}, 0,
+        shell.addCommand(new String[]{"lsa"}, 0,
                 new Shell.OnCommandResultListener() {
                     public void onCommandResult(int commandCode, int exitCode, List<String> output) {
                         if (exitCode < 0) {
