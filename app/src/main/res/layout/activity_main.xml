@@ -34,6 +34,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
+                android:textSize="@dimen/text_size"
+                android:typeface="monospace" />
+
+            <TextView
+                android:id="@+id/input_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/console_output"
+                android:text="@string/input_header_text"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/text_size"
                 android:typeface="monospace" />
 
             <EditText
@@ -41,9 +52,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/console_output"
+                android:layout_toRightOf="@+id/input_header"
                 android:hint="@string/console_input_hint"
-                android:textColor="@color/colorText"
                 android:inputType="text"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/text_size"
                 android:typeface="monospace" />
 
             <Button
