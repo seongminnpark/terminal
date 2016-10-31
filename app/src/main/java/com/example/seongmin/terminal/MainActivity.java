@@ -1,8 +1,8 @@
 package com.example.seongmin.terminal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private boolean root_access;
     private Shell.Interactive shell;
     private boolean shell_active = false;
@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                console_output.setText("Clicked");
-                ls_clicked();
+                submit_clicked();
             }
         });
 
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 sb.append(line).append((char) 10);
             }
         }
-        console_output.setText(sb.toString());
+        console_output.append(sb.toString());
         console_scrollview.post(new Runnable() {
             @Override
             public void run() {
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ls_clicked() {
+    private void submit_clicked() {
         if (shell == null) return;
         shell.addCommand(new String[]{"lsa"}, 0,
                 new Shell.OnCommandResultListener() {
