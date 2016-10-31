@@ -15,6 +15,7 @@
         android:id="@+id/root_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:typeface="monospace" />
 
     <ScrollView
@@ -32,6 +33,7 @@
                 android:id="@+id/console_output"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
                 android:typeface="monospace" />
 
             <EditText
@@ -40,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/console_output"
                 android:hint="@string/console_input_hint"
+                android:textColor="@color/colorText"
                 android:inputType="text"
                 android:typeface="monospace" />
 

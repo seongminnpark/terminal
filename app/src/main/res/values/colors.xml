@@ -7,5 +7,6 @@
 
     <color name="colorTheme">#4e4e4e</color>
     <color name="colorHighlight">#77dd77</color>
+    <color name="colorText">#FFFFFF</color>
 
 </resources>
