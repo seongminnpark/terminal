@@ -37,33 +37,39 @@
                 android:textSize="@dimen/text_size"
                 android:typeface="monospace" />
 
-            <TextView
-                android:id="@+id/input_header"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/console_input_linearlayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/console_output"
-                android:text="@string/input_header_text"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/text_size"
-                android:typeface="monospace" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/console_input"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/console_output"
-                android:layout_toRightOf="@+id/input_header"
-                android:hint="@string/console_input_hint"
-                android:inputType="text"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/text_size"
-                android:typeface="monospace" />
+                <TextView
+                    android:id="@+id/input_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_header_text"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/text_size"
+                    android:typeface="monospace" />
+
+                <EditText
+                    android:id="@+id/console_input"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/console_input_hint"
+                    android:inputType="text"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/text_size"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/console_input"
+                android:layout_below="@+id/console_input_linearlayout"
                 android:text="@string/submit_button"
                 android:typeface="monospace" />
 
