@@ -144,8 +144,7 @@ public class MainActivity extends Activity {
                             report_error("Error executing commands: exitCode " + exitCode);
                         } else {
                             updateResultStatus(output);
-                            Log.d("hello",Float.toString(console_output.getTextSize()));
-                            Log.d("hello",Float.toString(console_input.getTextSize()));
+                            console_input.getText().clear();
                         }
                     }
                 });
