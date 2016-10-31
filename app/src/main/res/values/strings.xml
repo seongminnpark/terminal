@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">terminal</string>
-    <string name="console_output">Hello.</string>
     <string name="console_input_hint">Type in terminal command!</string>
     <string name="submit_button">Submit</string>
 </resources>
